@@ -1,4 +1,4 @@
-package com.crud.tasks.com.crud.tasks.service;
+package com.crud.tasks.service;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

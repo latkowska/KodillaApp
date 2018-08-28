@@ -1,4 +1,4 @@
-package com.crud.tasks.com.crud.tasks.service;
+package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.repository.TaskRepository;
@@ -28,6 +28,11 @@ public class DbService {
     public Optional<Task> getTask(final Long id) {
         return repository.findById(id);
     }
+
+    //P
+    //public Task deleteTaskById(final Long id){
+       // return repository.deleteById(id);
+    ///}
 }
 
 
