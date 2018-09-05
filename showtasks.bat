@@ -1,7 +1,7 @@
 call C:\Users\latko\KodillaDeveloper\tasks\runcrud.bat
 if "%ERRORLEVEL%" == "0" goto runchrome
 echo.
-echo Running ...\showtasks.bat caused errors
+echo Running ...\runcrud.bat caused errors
 goto stop
 
 :runchrome
