@@ -15,16 +15,16 @@ import java.util.List;
 @Component
 public class TrelloClient {
 
-    @Value("${trello.api.endpoint.prod]")
+    @Value("${trello.api.endpoint.prod}")
     private String trelloApiEndpoint;
 
-    @Value("$(trello.app.key)")
+    @Value("${trello.app.key}")
     private String trelloAppKey;
 
-    @Value("$(trello.app.token)")
+    @Value("${trello.app.token}")
     private String trelloToken;
 
-    @Value("$(paulina88030675)")
+    @Value("${trello.username}")
     private String trelloUsername;
 
     @Autowired
@@ -32,23 +32,61 @@ public class TrelloClient {
 
     public List<TrelloBoardDto> getTrelloBoards() {
 
-        TrelloClient trelloClient = new TrelloClient();
-        URI buildUrl = trelloClient.buildUrl();
+        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/paulina88030675/boards")
+                .queryParam("key", trelloAppKey)
+                .queryParam("token", trelloToken)
+                .queryParam("fields", "name,id").build().encode().toUri();
 
-        TrelloBoardDto[] boardsResponse = restTemplate.getForObject(
-                buildUrl, TrelloBoardDto[].class);
-
+        TrelloBoardDto[] boardsResponse = restTemplate.getForObject(url, TrelloBoardDto[].class);
         if (boardsResponse != null) {
             return Arrays.asList(boardsResponse);
         }
         return new ArrayList<>();
     }
-
-    private URI buildUrl() {
-        URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/" + trelloUsername + "/boards")
-                .queryParam("key", trelloAppKey)
-                .queryParam("token", trelloToken)
-                .queryParam("fields", "name,id").build().encode().toUri();
-        return url;
-    }
 }
+
+/**
+ * zad 18.2
+ * TrelloClient trelloClient = new TrelloClient();
+ * URI buildUrl = trelloClient.buildUrl();
+ * <p>
+ * TrelloBoardDto[] boardsResponse = restTemplate.getForObject(
+ * buildUrl, TrelloBoardDto[].class);
+ * <p>
+ * <p>
+ * if (boardsResponse != null) {
+ * return Arrays.asList(boardsResponse);
+ * }
+ * return new ArrayList<>();
+ * zad 18.2
+ * private URI buildUrl() {
+ * URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/" + trelloUsername + "/boards")
+ * .queryParam("key", trelloAppKey)
+ * .queryParam("token", trelloToken)
+ * .queryParam("fields", "name,id")
+ * .queryParam("lists", "all").build().encode().toUri();
+ * return url;
+ * }
+ * zad 18.2
+ * private URI buildUrl() {
+ * URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/" + trelloUsername + "/boards")
+ * .queryParam("key", trelloAppKey)
+ * .queryParam("token", trelloToken)
+ * .queryParam("fields", "name,id")
+ * .queryParam("lists", "all").build().encode().toUri();
+ * return url;
+ * }
+ */
+
+
+/** zad 18.2
+ private URI buildUrl() {
+ URI url = UriComponentsBuilder.fromHttpUrl(trelloApiEndpoint + "/members/" + trelloUsername + "/boards")
+ .queryParam("key", trelloAppKey)
+ .queryParam("token", trelloToken)
+ .queryParam("fields", "name,id")
+ .queryParam("lists", "all").build().encode().toUri();
+ return url;
+ }
+ */
+
