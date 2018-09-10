@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +17,6 @@ public class TrelloBadgesDto {
     private int votes;
 
     @JsonProperty("attachmentsByType")
-    private List<TrelloAttachmentsByTypeDto> attachements;
+    private TrelloAttachmentsByTypeDto trelloAttachmentsByTypeDto;
 }
 
