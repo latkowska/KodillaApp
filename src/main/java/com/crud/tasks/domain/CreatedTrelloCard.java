@@ -23,4 +23,9 @@ public class CreatedTrelloCard {
     @JsonProperty("badges")
     private TrelloBadgesDto trelloBadgesDto;
 
+    public CreatedTrelloCard(String id, String name, String shortUrl) {
+        this.id = id;
+        this.name = name;
+        this.shortUrl = shortUrl;
+    }
 }
