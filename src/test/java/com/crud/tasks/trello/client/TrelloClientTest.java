@@ -90,9 +90,8 @@ public class TrelloClientTest {
     }
 
     @Test
-    public void shouldReturnEmptyList() throws URISyntaxException {
+    public void shouldReturnEmptyList(){
         //Given
-
         when(restTemplate.getForObject(any(), TrelloBoardDto[].class)).thenReturn(null);
         //When
         int fetchedTrelloBoardsSize = trelloClient.getTrelloBoards().size();
