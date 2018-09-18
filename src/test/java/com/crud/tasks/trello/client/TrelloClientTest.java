@@ -22,6 +22,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -92,7 +93,7 @@ public class TrelloClientTest {
     @Test
     public void shouldReturnEmptyList(){
         //Given
-        when(restTemplate.getForObject(any(), TrelloBoardDto[].class)).thenReturn(null);
+        when(restTemplate.getForObject(any(), eq(TrelloBoardDto[].class))).thenReturn(null);
         //When
         int fetchedTrelloBoardsSize = trelloClient.getTrelloBoards().size();
         //Then
